@@ -11,7 +11,7 @@ import torch
 from sentence_transformers import SentenceTransformer
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
-# --------------------------------------------------------------------- Config
+# ----------------------------- Config --------------------------------
 REDIS_HOST, REDIS_PORT = "localhost", 6379
 
 INDEX_NAME   = "doc_index_hybrid"
@@ -21,7 +21,7 @@ EMBED_FIELD  = "embedding"
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ---------------------------------------------------------------- Embeddings
+# -------------------------- Embeddings --------------------------------
 text_model = SentenceTransformer(
     "Qwen/Qwen3-Embedding-0.6B",
     trust_remote_code=True,
@@ -60,7 +60,7 @@ def embed_image(pil: Image.Image) -> np.ndarray:
     caption = caption_image(pil)
     return embed_text(caption), caption
 
-# ------------------------------------------------------------------- Redis
+# ------------------------------ Redis Stuff ----------------------------
 def create_index(r: redis.Redis) -> None:
     from redis.commands.search.field import TextField, VectorField
     from redis.commands.search.index_definition import IndexDefinition, IndexType

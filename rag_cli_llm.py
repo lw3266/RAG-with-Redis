@@ -3,8 +3,6 @@ import redis
 from redis.commands.search.query import Query
 import torch
 from transformers import (
-    BlipProcessor,
-    BlipModel,
     AutoTokenizer,
     AutoModelForCausalLM,
     TextStreamer,
